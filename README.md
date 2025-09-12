@@ -1,28 +1,41 @@
-REMIX DEFAULT WORKSPACE
+# Smart Contract Deployment Guide
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+This guide explains how to deploy the smart contract located in the `code/` directory of this repository using **Remix** and **MetaMask**.
 
-This workspace contains 3 directories:
+## Prerequisites
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+- [MetaMask](https://metamask.io/) browser extension installed.
+- A MetaMask account with test ETH on the **Sepolia** test network.
+- Modern web browser to access [Remix IDE](https://remix.ethereum.org/).
 
-SCRIPTS
+## Steps to Deploy
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+1. **Set up MetaMask**
+   - Open MetaMask and create a new account or use an existing one.
+   - Switch the network to **Sepolia Test Network**.
+   - Ensure your account has some Sepolia test ETH (you can get some from a Sepolia faucet).
 
-For the deployment of any other contract, just update the contract name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+2. **Open Remix IDE**
+   - Go to [Remix IDE](https://remix.ethereum.org/) in your web browser.
+   - In the left sidebar, create a new file inside the `scripts` folder and paste the contents of your Solidity contract from `code/<your_contract>.sol`.
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+3. **Compile the Contract**
+   - Click the **Solidity Compiler** tab on the left sidebar.
+   - Select the appropriate compiler version matching your contract.
+   - Click **Compile**.
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+4. **Deploy the Contract**
+   - Go to the **Deploy & Run Transactions** tab.
+   - Under **Environment**, select **Injected Provider - MetaMask**.
+   - MetaMask will ask you to connect; select the account you want to use.
+   - Under **Contract**, select the correct contract you want to deploy from the dropdown.
+   - Click **Deploy** and confirm the transaction in MetaMask.
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+5. **Done**
+   - After a few seconds, your contract will be deployed on the Sepolia test network.
+   - You can interact with it directly through Remix or via the contract address in MetaMask.
+
+---
+
+Feel free to reach out if you encounter any issues during deployment.
+
