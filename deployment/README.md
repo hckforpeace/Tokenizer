@@ -1,57 +1,41 @@
-# Sample Hardhat 3 Beta Project (`node:test` and `viem`)
+# Smart Contract Deployment Guide
 
-This project showcases a Hardhat 3 Beta project using the native Node.js test runner (`node:test`) and the `viem` library for Ethereum interactions.
+This guide explains how to deploy the smart contract located in the `code/` directory of this repository using **Remix** and **MetaMask**.
 
-To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3 Beta](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+## Prerequisites
 
-## Project Overview
+- [MetaMask](https://metamask.io/) browser extension installed.
+- A MetaMask account with test ETH on the **Sepolia** test network.
+- Modern web browser to access [Remix IDE](https://remix.ethereum.org/).
 
-This example project includes:
+## Steps to Deploy
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using [`node:test`](nodejs.org/api/test.html), the new Node.js native test runner, and [`viem`](https://viem.sh/).
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+1. **Set up MetaMask**
+   - Open MetaMask and create a new account or use an existing one.
+   - Switch the network to **Sepolia Test Network**.
+   - Ensure your account has some Sepolia test ETH (you can get some from a Sepolia faucet).
 
-## Usage
+2. **Open Remix IDE**
+   - Go to [Remix IDE](https://remix.ethereum.org/) in your web browser.
+   - In the left sidebar, create a new file inside the `scripts` folder and paste the contents of your Solidity contract from `code/<your_contract>.sol`.
 
-### Running Tests
+3. **Compile the Contract**
+   - Click the **Solidity Compiler** tab on the left sidebar.
+   - Select the appropriate compiler version matching your contract.
+   - Click **Compile**.
 
-To run all the tests in the project, execute the following command:
+4. **Deploy the Contract**
+   - Go to the **Deploy & Run Transactions** tab.
+   - Under **Environment**, select **Injected Provider - MetaMask**.
+   - MetaMask will ask you to connect; select the account you want to use.
+   - Under **Contract**, select the correct contract you want to deploy from the dropdown.
+   - Click **Deploy** and confirm the transaction in MetaMask.
 
-```shell
-npx hardhat test
-```
+5. **Done**
+   - After a few seconds, your contract will be deployed on the Sepolia test network.
+   - You can interact with it directly through Remix or via the contract address in MetaMask.
 
-You can also selectively run the Solidity or `node:test` tests:
+---
 
-```shell
-npx hardhat test solidity
-npx hardhat test nodejs
-```
+Feel free to reach out if you encounter any issues during deployment.
 
-### Make a deployment to Sepolia
-
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
-
-To run the deployment to a local chain:
-
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
-
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
-
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
-
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
-
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
-
-After setting the variable, you can run the deployment with the Sepolia network:
-
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
